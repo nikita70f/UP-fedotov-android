@@ -4,6 +4,10 @@ plugins {
 }
 
 android {
+        buildFeatures {
+            viewBinding = true
+        }
+
     namespace = "ru.fedotov.myfirstapp"
     compileSdk {
         version = release(36)

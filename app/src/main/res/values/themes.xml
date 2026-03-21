@@ -23,5 +23,37 @@
         <!-- Error colors -->
         <item name="colorError">@color/red_500</item>
         <item name="colorOnError">@color/white</item>
+
     </style>
+
+
+    <!-- Стиль для кнопки лайка (Toggle Button) -->
+    <style name="Widget.AppTheme.LikeButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/ic_like_tint</item>
+        <item name="android:textColor">@color/ic_like_tint</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <!-- Стиль для кнопки репоста (обычная Icon Button) -->
+    <style name="Widget.AppTheme.ShareButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/gray_600</item>
+        <item name="android:textColor">@color/gray_600</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <!-- Стиль для кнопки меню (обычная Icon Button) -->
+    <style name="Widget.AppTheme.MenuButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconTint">@color/gray_600</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
 </resources>
+
+
+

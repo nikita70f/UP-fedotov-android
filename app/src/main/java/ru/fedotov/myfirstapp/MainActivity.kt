@@ -1,11 +1,14 @@
 package ru.fedotov.myfirstapp
 
+import android.R.attr.action
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import ru.fedotov.myfirstapp.activity.EditPostContract
 import ru.fedotov.myfirstapp.adapter.OnPostInteractionListener
 import ru.fedotov.myfirstapp.adapter.PostsAdapter
 import ru.fedotov.myfirstapp.databinding.ActivityMainBinding
@@ -19,6 +22,13 @@ class MainActivity : AppCompatActivity() {
 
     // ID поста, который редактируется (0 = новый пост)
     private var editingPostId: Long = 0L
+    private val editPostLauncher = registerForActivityResult(EditPostContract()) { result ->
+        if (!result.isNullOrBlank()) {
+            // Получен текст отредактированного/нового поста
+            viewModel.changeContent(result)
+            viewModel.save()
+        }
+    }
 
     private val interactionListener = object : OnPostInteractionListener {
         override fun onLike(post: Post) {
@@ -26,22 +36,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onShare(post: Post) {
+            // Создаем Intent для отправки текста
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, post.content)
+                type = "text/plain"
+            }
+
+            // Создаем Chooser с заголовком
+            val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_post_via))
+            startActivity(chooserIntent)
+
+            // Увеличиваем счетчик репостов
             viewModel.shareById(post.id)
-            Toast.makeText(this@MainActivity, "Репост +1", Toast.LENGTH_SHORT).show()
         }
 
+
+
         override fun onEdit(post: Post) {
-            // Сохраняем ID редактируемого поста
-            editingPostId = post.id
-            // Устанавливаем текст в поле ввода
-            binding.content.setText(post.content)
-            binding.content.setSelection(binding.content.text.length)
-            // Переводим фокус и показываем клавиатуру
-            binding.content.requestFocus()
-            showKeyboard(binding.content)
-            // Показываем панель отмены
-            binding.cancelGroup.visibility = View.VISIBLE
+            // Запускаем редактирование существующего поста с текстом
+            editPostLauncher.launch(post.content)
         }
+
 
         override fun onRemove(post: Post) {
             viewModel.removeById(post.id)
@@ -52,10 +68,15 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "Профиль: ${post.author}", Toast.LENGTH_SHORT).show()
             viewModel.increaseViews(post.id)
         }
+
+        override fun putExtra(extraText: Any, content: String) {
+            TODO("Not yet implemented")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -114,6 +135,10 @@ class MainActivity : AppCompatActivity() {
             hideKeyboard(binding.content)
             // Отменяем редактирование в ViewModel
             viewModel.cancelEdit()
+        }
+        binding.fab.setOnClickListener {
+            // Запускаем создание нового поста
+            editPostLauncher.launch(null)  // null означает создание нового
         }
     }
 

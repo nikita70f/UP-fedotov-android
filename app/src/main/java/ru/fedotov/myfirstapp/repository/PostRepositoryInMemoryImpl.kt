@@ -32,7 +32,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "21 мая в 18:36",
             likedByMe = false,
             likes = 999,
-            views = 5700
+            views = 5700,
+            video = "https://rutube.ru/video/f645cbc89bf04c129ac6089f8a725b91/"
+
         ),
         Post(
             id = 2,
@@ -47,7 +49,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 342,
             shares = 89,
-            views = 2300
+            views = 2300,
+            video = "https://rutube.ru/video/c1184d00bf4872d31c369c24476ca4c0/"
+
+
         ),
         Post(
             id = 3,
@@ -59,8 +64,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = true,
             likes = 1250,
             shares = 420,
-            views = 8900
-        ),
+            views = 8900,
+             video = "https://rutube.ru/video/c1ef69af32bb653d5221f1b75bf2d987/"  // пример видео
+
+    ),
         Post(
             id = 4,
             author = "ШУБЫ!",
@@ -74,7 +81,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 5678,
             shares = 1234,
-            views = 45000
+            views = 45000,
+            video = "https://rutube.ru/video/4aa7de37f1b240c6d541ce1fc63a8fa2/"  // пример видео
+
         ),
         Post(
             id = 5,
@@ -90,8 +99,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 3668,
             shares = 1234,
-            views = 13992
-    ),
+            views = 13992,
+            video = "https://rutube.ru/video/064f2834ab552697af4350f1d9dd5511/"
+
+        ),
         Post(
             id = 6,
             author = "ШУБЫ!",
@@ -106,7 +117,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 5348,
             shares = 234,
-            views = 5321
+            views = 5321,
+            video = "https://rutube.ru/video/5dcb100638ad62f19f099d76cec8b769/"
+
         ),
         Post(
             id = 7,
@@ -122,7 +135,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 8072,
             views = 21462,
-            shares = 1142
+            shares = 1142,
+            video = "https://rutube.ru/video/96a896bfacd1811a128e2a5118d5782a/"  // пример видео
+
         ),
         Post(
             id = 8,
@@ -138,7 +153,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 366,
             shares = 33,
-            views = 333333
+            views = 333333,
+            video = "https://rutube.ru/video/e77a56d4d8e6d7753abc381f854898b7/"  // пример видео
+
         ),
         Post(
             id = 9,
@@ -153,7 +170,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 333,
             shares = 444,
-            views = 8743
+            views = 8743,
+            video = "https://rutube.ru/video/3ecdf50b07cd762cfda9a0eb228e2918/"  // пример видео
+
         ),
         Post(
             id = 10,
@@ -166,7 +185,9 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             likes = 373,
             shares = 2413,
-            views = 64635
+            views = 64635,
+            video = "https://rutube.ru/video/0872c244237b298d3d8f263a0c3cf282/"  // пример видео
+
         )
     )
 

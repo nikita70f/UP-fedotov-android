@@ -8,5 +8,6 @@ interface OnPostInteractionListener {
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
     fun onAvatarClick(post: Post) {}
-    fun putExtra(extraText: Any, content: String)
+    fun onPostClick(post: Post) {}  // новый метод для клика на карточку
 }
+

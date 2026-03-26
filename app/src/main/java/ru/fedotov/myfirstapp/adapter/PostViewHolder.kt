@@ -74,8 +74,36 @@ class PostViewHolder(
             menu.setOnClickListener { view ->
                 showPopupMenu(view, post)
             }
+            root.setOnClickListener {
+                listener.onPostClick(post)
+            }
+
+            // Обработчики для интерактивных элементов должны вызывать stopPropagation
+            // чтобы не срабатывал клик на root
+            like.setOnClickListener {
+                listener.onLike(post)
+                it.stopPropagation()  // предотвращаем всплытие события
+            }
+
+            share.setOnClickListener {
+                listener.onShare(post)
+                it.stopPropagation()
+            }
+
+            avatar.setOnClickListener {
+                listener.onAvatarClick(post)
+                it.stopPropagation()
+            }
+
+            menu.setOnClickListener { view ->
+                showPopupMenu(view, post)
+                // menu не должен вызывать onPostClick
+            }
         }
     }
+
+
+
 
 
     private fun showPopupMenu(anchor: View, post: Post) {
@@ -123,5 +151,12 @@ class PostViewHolder(
             else -> count.toString()
         }
     }
+    fun View.stopPropagation() {
+        isClickable = true
+        setOnClickListener { }
+    }
 }
+
+
+
 

@@ -20,38 +20,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Cache Gradle
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Debug - List files
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in root:"
-          ls -la
-          echo "Checking gradle wrapper:"
-          if [ -f "./gradlew" ]; then
-            echo "✅ gradlew found"
-          else
-            echo "❌ gradlew NOT found!"
-            echo "Please ensure gradlew, gradlew.bat, and gradle/wrapper/ are committed to git"
-            exit 1
-          fi
-
       - name: Build
         run: |
           chmod +x ./gradlew
-          ./gradlew build --no-daemon
-
+          ./gradlew build
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
           path: app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: warn
